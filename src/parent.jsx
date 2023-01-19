@@ -4,6 +4,7 @@ import Child from './child';
 class Parent extends Component {
     state = {
         name: "Chandrakant",
+        tableName : "Parent Table",
         // pname:"",
         family: [
             {
@@ -20,18 +21,18 @@ class Parent extends Component {
 
     }
 
-    updateName = () => {
+    updateName = ()=>{
 
-         let pname = prompt("Enter the value");
+        let pname = prompt("Enter the value");
         this.setState({ name: pname });
     }
 
     render() {
         return (
             <div>
-                I am from Parent. <button onClick={() => this.updateName()}>Click to change parent name</button>
-                <Child parentName={this.state.name} parentFamily={this.state.family} ></Child>
+                I am from Parent. 
                 <div>
+                    Table : {this.state.tableName}
                     <table border={5}>
                         <thead title='Parent Table'>
                             <tr>
@@ -53,6 +54,8 @@ class Parent extends Component {
                             }
                         </tbody>
                     </table>
+                    <button onClick={() => this.updateName() }>Click to change parent name</button>
+                    <Child parentName={this.state.name} parentFamily={this.state.family} ></Child>
                 </div>
             </div>
         );

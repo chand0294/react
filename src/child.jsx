@@ -1,12 +1,23 @@
 import { Component } from 'react';
 
 class Child extends Component {
-    state = {}
+    state = {
+        family : [],
+        tableName : "Child Table"
+    }
+
+    componentDidMount(){
+        this.setState({family : this.props.parentFamily});
+    }
+
+    
     render() {
         return (
-            <div>Hey, I am Child !
+            <div className='child-container'> Hey, I am Child !
                 <div>Parent name is {this.props.parentName}</div>
                 <div>
+                    {/* {this.setState({family : this.props.parentFamily})}       ### This should cause infinite recursive re-rendering so avoid it*/}
+                    Table : {this.state.tableName}
                     <table border={2}>
                         <thead title='Child Table'>
                             <tr>
@@ -15,7 +26,7 @@ class Child extends Component {
                         </thead>
                         <tbody>
                             {
-                                this.props.parentFamily.map((member, index) =>
+                                this.state.family.map((member, index) =>
                                     <tr key={index}>
                                         <td >{index + 1}</td>
                                         <td>{member.name}</td>
